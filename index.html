@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soi tin nhắn lừa đảo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{--bg:#0F1623;--sf:#172033;--bd:#2A3650;--tx:#E6ECF5;--mu:#9AA8BF;--dg:#FF6B6B;--wn:#FFB347;--ok:#4ADE9F;--ac:#7CC4FF;--bb:#EAF0F8;--bf:#1B2433;--md:#FFD3D3;--mdf:#8A1B1B;--mw:#FFE6BD;--mwf:#6B3F00;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#F4F6FA;--sf:#FFFFFF;--bd:#D5DCE8;--tx:#16202F;--mu:#556176;--dg:#C62828;--wn:#A65A00;--ok:#0B7A4B;--ac:#0B5FA5;--bb:#FFFFFF;color-scheme:light}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.55 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 40px}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.15;font-weight:800;margin:0 0 12px;max-width:18ch}
+.sub{color:var(--mu);max-width:62ch;margin:0 0 28px}
+.g{display:grid;gap:20px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:860px){.g{grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:start}}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:18px}
+label{display:block;font-weight:600;margin-bottom:8px}
+textarea{width:100%;min-height:210px;resize:vertical;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:10px;padding:14px;font:inherit}
+textarea:focus,button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+.hint{color:var(--mu);font-size:14px;margin:16px 0 0}
+button{min-height:44px;padding:8px 14px;border-radius:999px;border:1px solid var(--bd);background:transparent;color:var(--tx);font:inherit;font-size:15px;cursor:pointer;transition:background .15s,border-color .15s}
+button:hover{border-color:var(--ac)}
+button.clr{margin-left:auto;border-radius:8px;color:var(--mu)}
+.empty{color:var(--mu);margin:0;padding:40px 0;text-align:center}
+.res{--lc:var(--ok)}.res[data-lv=mid]{--lc:var(--wn)}.res[data-lv=high]{--lc:var(--dg)}
+.top{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.num{font-size:48px;font-weight:800;line-height:1;color:var(--lc)}
+.num small{font-size:16px;color:var(--mu);font-weight:400}
+.vd{font-size:19px;font-weight:600}
+.meter{height:10px;background:var(--bd);border-radius:999px;overflow:hidden;margin:14px 0 18px}
+.meter i{display:block;height:100%;width:0;background:var(--lc);transition:width .35s ease}
+.bub{background:var(--bb);color:var(--bf);padding:14px 16px;border-radius:18px 18px 18px 4px;white-space:pre-wrap;overflow-wrap:anywhere;margin:0 0 22px}
+mark{border-radius:4px;padding:0 2px;text-decoration:underline wavy;text-underline-offset:3px}
+mark.d{background:var(--md);color:var(--mdf);text-decoration-color:#C62828}
+mark.w{background:var(--mw);color:var(--mwf);text-decoration-color:#B26A00}
+h2{font-size:17px;margin:22px 0 8px}
+ul{list-style:none;margin:0;padding:0}
+li.s{border-left:4px solid var(--wn);background:var(--bg);border-radius:0 10px 10px 0;padding:10px 12px;margin:8px 0}
+li.s.d{border-left-color:var(--dg)}
+li.s p{margin:2px 0 0;color:var(--mu);font-size:14px}
+.tag{font-size:13px;font-weight:600;margin-right:8px;color:var(--wn)}li.d .tag{color:var(--dg)}
+.u{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;font-size:14px;overflow-wrap:anywhere}
+.adv li{padding:6px 0 6px 22px;position:relative}
+.adv li:before{content:"";position:absolute;left:4px;top:15px;width:8px;height:8px;border-radius:2px;background:var(--lc)}
+.note{color:var(--mu);font-size:14px;margin:18px 0 0}
+footer{color:var(--mu);font-size:14px;margin-top:28px;max-width:70ch}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Tin nhắn này có phải lừa đảo không?</h1>
+  <p class="sub">Dán tin nhắn hoặc link lạ vào ô bên dưới. Công cụ chỉ ra từng dấu hiệu đáng ngờ và nói bạn nên làm gì. Mọi thứ chạy ngay trên máy bạn, tin nhắn không bị gửi đi đâu.</p>
+  <div class="g">
+    <section class="card">
+      <label for="msg">Tin nhắn cần kiểm tra</label>
+      <textarea id="msg" placeholder="Dán nội dung tin nhắn SMS, Zalo, Messenger hoặc email vào đây"></textarea>
+      <div class="row" id="samples" aria-label="Tin nhắn mẫu">
+        <button type="button" data-i="0">Giả ngân hàng</button>
+        <button type="button" data-i="1">Tuyển CTV</button>
+        <button type="button" data-i="2">Giao hàng</button>
+        <button type="button" data-i="3">OTP thật</button>
+        <button type="button" class="clr" id="clr">Xóa</button>
+      </div>
+      <p class="hint">Các tin mẫu đều là tin giả lập để thử công cụ.</p>
+    </section>
+    <section class="card res" id="res" data-lv="low" aria-live="polite"><div id="out"></div></section>
+  </div>
+  <footer>Công cụ dựa trên quy tắc nhận diện, không phải kết luận chắc chắn. Điểm thấp không có nghĩa là an toàn: nếu tin đòi tiền, mã OTP hoặc giấy tờ cá nhân, hãy xác minh qua ứng dụng hoặc số hotline chính thức của nơi gửi.</footer>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fold=s=>s.split("").map(c=>{if(c==="đ"||c==="Đ")return "d";const r=c.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();return r.length?r:" "}).join("");
+/* [mức, điểm, regex trên chữ không dấu, tiêu đề, lý do] */
+const TXT=[
+["d",35,/(?<!khong )(?<!dung )(cung cap|gui|nhap|doc cho|cho biet|xac nhan|cap nhat)[^.!?\n]{0,25}(otp|ma xac thuc|mat khau|ma pin|cvv|so the|cccd|can cuoc|so tai khoan)/,"Đòi mã OTP, mật khẩu hoặc thông tin thẻ","Ngân hàng và cơ quan nhà nước không nhắn tin bảo bạn gửi hay nhập các thông tin này."],
+["d",20,/\b(tai khoan|the|ung dung)\b[^.!?\n]{0,30}(se bi khoa|bi khoa|tam khoa|bi dinh chi|tam ngung|bat thuong|bi han che)/,"Dọa khóa tài khoản","Chiêu hù dọa để bạn hoảng và bấm vào liên kết."],
+["w",15,/(\bkhan cap\b|\bkhan\b|ngay lap tuc|trong (vong )?\d+ ?(gio|h)\b|het han|han chot|truoc \d+h)/,"Tạo áp lực phải làm ngay","Kẻ gian muốn bạn không có thời gian suy nghĩ hay hỏi người khác."],
+["w",20,/(trung thuong|trung giai|nhan qua|qua tang|hoan tien|nhan ngay|chuc mung ban|mien phi|uu dai (dac biet|doc quyen)|voucher|tri an khach hang)/,"Hứa thưởng, hoàn tiền, quà tặng","Phần thưởng bất ngờ là mồi nhử quen thuộc."],
+["d",30,/(tuyen (ctv|cong tac vien)|cong tac vien|viec nhe|luong cao|lam nhiem vu|nhiem vu|hoa hong|ung luong|nap tien|dat don|\d+ ?(k|tr|trieu|nghin)[^.!?\n]{0,6}\/ ?(ngay|gio))/,"Mời việc nhẹ lương cao, làm nhiệm vụ","Kiểu lừa tuyển cộng tác viên: thưởng nhỏ lúc đầu, sau đó bắt bạn nạp tiền."],
+["w",15,/(don hang|buu kien|buu pham|giao hang (that bai|khong thanh cong)|phi (giao|luu kho|hai quan|van chuyen)|hai quan|ma van don)/,"Giả báo đơn hàng, bưu kiện","Kẻ gian giả đơn vị giao hàng để đòi “phí” hoặc lấy thông tin."],
+["d",20,/(cong an|vien kiem sat|toa an|co quan dieu tra|lenh (bat|trieu tap)|truy na|vi pham phap luat|cuc thue|tong cuc thue|bhxh|bao hiem xa hoi|dien luc|cat dien|vneid|dinh danh dien tu)/,"Giả danh cơ quan nhà nước hoặc điện lực","Cơ quan chức năng không làm việc với dân qua tin nhắn kèm đường link."],
+["w",10,/(dang nhap|xac minh|cap nhat thong tin|sinh trac hoc|bien dong so du)/,"Yêu cầu xác minh hoặc cập nhật thông tin","Yêu cầu này thường dẫn tới trang đăng nhập giả."],
+["w",10,/(zalo|telegram|whatsapp|\bwa\b|ket ban)/,"Dẫn bạn sang Zalo hoặc Telegram","Kẻ gian thường kéo nạn nhân sang kênh riêng để dễ thao túng."]
+];
+const SHORT=["bit.ly","tinyurl.com","cutt.ly","s.id","t.ly","rebrand.ly","is.gd","shorturl.at","tiny.cc","goo.gl","ow.ly","t.co","rb.gy"];
+const BR=["vietcombank","vcb","techcombank","tcb","mbbank","bidv","vietinbank","agribank","acb","tpbank","vpbank","sacombank","hdbank","vib","momo","zalopay","viettel","vnpt","mobifone","vinaphone","vneid","dichvucong","bocongan","bhxh","evn","shopee","lazada","tiktok","ghn","ghtk","vnpost"];
+const UR=/https?:\/\/[^\s<>"]+|\b(?:[a-z0-9-]+\.)+(?:com|vn|net|org|info|xyz|top|vip|click|icu|live|shop|site|online|cc|buzz|club|work|cfd|sbs|link|me|co|io|ly|gl|id|app|store|cn|ru|tk|ml|ga|cf|gq|pw|ws|biz)\b(?:\/[^\s<>"]*)?/g;
+function linkFlags(u){
+  const host=u.replace(/^https?:\/\//,"").split(/[\/?#:]/)[0],F=[];
+  if(SHORT.includes(host))F.push(["w",25,"Link rút gọn","Link rút gọn che đi địa chỉ thật của trang đích."]);
+  if(/^\d{1,3}(\.\d{1,3}){3}$/.test(host))F.push(["d",30,"Địa chỉ IP thay cho tên miền","Trang chính thống gần như luôn dùng tên miền, không dùng dãy số."]);
+  if(/\.(xyz|top|vip|click|icu|live|shop|site|online|cc|buzz|club|work|cfd|sbs|link|tk|ml|ga|cf|gq|pw|ws)$/.test(host))F.push(["w",20,"Đuôi tên miền hay bị lạm dụng","Các đuôi như .top, .xyz, .vip rất rẻ nên kẻ gian hay dùng."]);
+  if(host.includes("xn--"))F.push(["d",25,"Tên miền chứa ký tự giả mạo (punycode)","Dùng ký tự trông giống chữ thật để đánh lừa mắt."]);
+  const lb=host.split(/[.\-]/),hit=BR.filter(b=>b.length>=5?host.includes(b):lb.includes(b));
+  if(hit.length&&!hit.some(b=>new RegExp("(^|\\.)"+b+"\\.(com\\.vn|gov\\.vn|vn|com)$").test(host)))
+    F.push(["d",40,"Tên miền giả mạo thương hiệu “"+esc(hit[0])+"”","Tên miền có tên thương hiệu nhưng không phải trang chính thức của họ."]);
+  if((host.match(/-/g)||[]).length>=2)F.push(["w",10,"Tên miền nhiều dấu gạch ngang","Tên miền dài, nhiều gạch ngang thường là trang dựng tạm."]);
+  if(/^http:\/\//.test(u))F.push(["w",10,"Không dùng HTTPS","Trang không mã hóa; trang chính thức hiếm khi như vậy."]);
+  return{host,F};
+}
+const ADV={
+ high:["Không bấm liên kết và không gọi số có trong tin nhắn.","Không gửi mã OTP, mật khẩu hay ảnh căn cước cho bất kỳ ai.","Cần kiểm tra thì tự mở ứng dụng chính thức, hoặc gọi số hotline in trên thẻ hay trang web chính thức.","Chặn số gửi và báo cáo tin rác cho nhà mạng hoặc cơ quan chức năng.","Lỡ bấm hoặc đã đưa OTP: gọi ngân hàng khóa thẻ ngay, đổi mật khẩu và bật thông báo biến động số dư."],
+ mid:["Chưa nên bấm link hay làm theo hướng dẫn trong tin.","Xác minh bằng cách tự mở ứng dụng hoặc gọi hotline chính thức của nơi gửi.","Hỏi người thân hoặc người am hiểu nếu còn phân vân."],
+ low:["Chưa thấy dấu hiệu rõ ràng, nhưng công cụ chỉ kiểm tra bằng quy tắc.","Nếu tin đòi tiền hoặc thông tin cá nhân, hãy xác minh qua kênh chính thức trước."]
+};
+function analyze(raw){
+  const s=raw.normalize("NFC"),f=fold(s),lv=new Array(s.length).fill(0),sig=new Map();
+  const mark=(a,b,l)=>{for(let i=a;i<b;i++)lv[i]=Math.max(lv[i],l==="d"?2:1)};
+  TXT.forEach(([l,w,re,t,y])=>{const r=new RegExp(re.source,"g");let m,ok=false;while((m=r.exec(f))){if(!m[0]){r.lastIndex++;continue}mark(m.index,m.index+m[0].length,l);ok=true}if(ok)sig.set(t,{l,w,t,y})});
+  const links=[];let m;UR.lastIndex=0;
+  while((m=UR.exec(f))){const u=m[0].replace(/[.,;:!?)\]]+$/,"");if(!u)continue;const{host,F}=linkFlags(u);links.push({host,F});
+    if(F.length){mark(m.index,m.index+u.length,F.some(x=>x[0]==="d")?"d":"w");F.forEach(([l,w,t,y])=>sig.set(t,{l,w,t,y}))}}
+  let score=[...sig.values()].reduce((a,x)=>a+x.w,0);
+  const hasLink=links.some(l=>l.F.length),hasTxt=TXT.some(([,,,t])=>sig.has(t));
+  if(hasLink&&hasTxt)score+=10;
+  score=Math.min(100,score);
+  let html="",run=0;
+  for(let i=0;i<=s.length;i++){if(i===s.length||lv[i]!==lv[run]){const seg=esc(s.slice(run,i));html+=lv[run]?`<mark class="${lv[run]===2?"d":"w"}">${seg}</mark>`:seg;run=i}}
+  return{score,html,sig:[...sig.values()].sort((a,b)=>b.w-a.w),links};
+}
+function render(){
+  const v=$("#msg").value,out=$("#out"),res=$("#res");
+  if(!v.trim()){res.dataset.lv="low";out.innerHTML='<p class="empty">Dán một tin nhắn vào ô bên cạnh. Kết quả hiện ngay tại đây.</p>';return}
+  const r=analyze(v),lv=r.score<20?"low":r.score<50?"mid":"high";
+  res.dataset.lv=lv;
+  const vd={low:"Chưa thấy dấu hiệu rõ ràng",mid:"Đáng ngờ, hãy kiểm tra trước khi làm theo",high:"Nguy cơ lừa đảo cao"}[lv];
+  let h=`<div class="top"><div class="num">${r.score}<small> / 100</small></div><div class="vd">${vd}</div></div>
+  <div class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${r.score}" aria-label="Điểm nguy cơ"><i style="width:${r.score}%"></i></div>
+  <p class="bub">${r.html}</p>`;
+  if(r.sig.length){h+="<h2>Dấu hiệu phát hiện</h2><ul>"+r.sig.map(x=>`<li class="s ${x.l}"><span class="tag">${x.l==="d"?"Nguy hiểm":"Đáng chú ý"}</span><strong>${x.t}</strong><p>${x.y}</p></li>`).join("")+"</ul>"}
+  if(r.links.length){h+="<h2>Liên kết trong tin</h2><ul>"+r.links.map(l=>`<li class="s ${l.F.some(x=>x[0]==="d")?"d":""}" ${l.F.length?"":'style="border-left-color:var(--ok)"'}><span class="u">${esc(l.host)}</span><p>${l.F.length?l.F.length+" dấu hiệu bất thường ở tên miền.":"Tên miền chưa có dấu hiệu bất thường, vẫn nên kiểm tra kỹ."}</p></li>`).join("")+"</ul>"}
+  h+=`<h2>Bạn nên làm gì</h2><ul class="adv">${ADV[lv].map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  out.innerHTML=h;
+}
+const SAMPLES=[
+"Vietcombank thông báo: tài khoản của bạn sẽ bị khóa trong 24h do chưa xác thực sinh trắc học. Cập nhật ngay tại https://vietcombank-xacthuc.top/login",
+"Tuyển CTV làm việc nhẹ lương cao, 500k-1tr/ngày, chỉ cần điện thoại. Làm nhiệm vụ nhận hoa hồng ngay. Liên hệ Zalo: 0900 000 000",
+"GHN: Đơn hàng của bạn giao không thành công. Vui lòng nộp phí giao lại 15.000đ tại bit.ly/ghn-giaolai trong 2 giờ.",
+"Mã OTP của bạn là 482913, có hiệu lực trong 5 phút. Tuyệt đối không chia sẻ mã này cho bất kỳ ai."
+];
+$("#msg").addEventListener("input",render);
+$("#samples").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(b){$("#msg").value=SAMPLES[b.dataset.i];render()}});
+$("#clr").addEventListener("click",()=>{$("#msg").value="";render();$("#msg").focus()});
+render();
+</script>
+</body>
+</html>
